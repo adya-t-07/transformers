@@ -1,0 +1,22 @@
+model:
+  base_model_id: "Qwen/Qwen2.5-1.5B"  # Lightweight, high-performing 2024-2026 era model
+  student_model_id: "Qwen/Qwen2.5-0.5B" # For Phase 3 Distillation testing
+
+training:
+  learning_rate: 2.0e-4
+  batch_size: 4
+  micro_batch_size: 1
+  epochs: 1
+  max_seq_length: 512
+
+lora:
+  r: 8
+  alpha: 16
+  target_modules: ["q_proj", "v_proj"]
+
+quantization:
+  bits: 4 # Target compression level for Phase 2
+
+data:
+  dataset_name: "wikitext"
+  dataset_config: "wikitext-2-raw-v1"
